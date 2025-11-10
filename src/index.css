@@ -1,2 +1,21 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small global styles for typography and balanced spacing */
+html, body, #root {
+  height: 100%;
+}
+body {
+  @apply bg-base-100 text-neutral-600 leading-relaxed;
+}
+
+/* utility to make cards equal height inside a grid */
+.equal-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

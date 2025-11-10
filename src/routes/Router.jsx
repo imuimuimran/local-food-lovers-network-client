@@ -1,11 +1,56 @@
-import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomeLayouts from '../layouts/HomeLayouts';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
+import AddReview from '../pages/AddReview';
+import AllReviews from '../pages/AllReviews';
+import MyReviews from '../pages/MyReviews';
+import MyFavorites from '../pages/MyFavorites';
+import ProtectedRoute from '../provider/ProtectedRoute';
 
-const Router = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
 
-export default Router;
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <HomeLayouts />,
+        children: [
+            {
+                index: true,
+                element: <Home />
+            },
+            {
+                path: 'login',
+                element: <Login />
+            },
+            { 
+                path: 'register', 
+                element: <Register /> 
+            },
+            { 
+                path: 'add-review', 
+                element: <ProtectedRoute><AddReview /></ProtectedRoute> 
+            },
+            { 
+                path: 'all-reviews', 
+                element: <AllReviews /> 
+            },
+            { 
+                path: 'my-reviews', 
+                element: <ProtectedRoute><MyReviews /></ProtectedRoute> 
+            },
+            { 
+                path: 'my-favorites', 
+                element: <ProtectedRoute><MyFavorites /></ProtectedRoute> 
+            },
+            {
+                path: "/*",
+                element: <h2>Error 404</h2>
+            },
+        ]
+    }
+]);
+
+export default function RouterWrapper() {
+    return <RouterProvider router={router} />;
+}
