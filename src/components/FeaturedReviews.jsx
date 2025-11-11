@@ -1,36 +1,25 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { FaHeart, FaStar } from "react-icons/fa";
+import Loading from "./Loading";
 
 const FeaturedReviews = () => {
-  const featuredReviews = [
-    {
-      _id: 1,
-      image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80",
-      foodName: "Kacchi Biryani",
-      restaurant: "Star Kabab & Restaurant",
-      location: "Dhanmondi, Dhaka",
-      reviewer: "Rafi Ahmed",
-      rating: 4.8,
+  // Fetch top-rated 6 Reviews 
+  const {
+    data: featuredReviews = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["featuredReviews"],
+    queryFn: async () => {
+      const res = await axios.get("http://localhost:3000/featured-reviews");
+      return res.data;
     },
-    {
-      _id: 2,
-      image: "https://images.unsplash.com/photo-1601050690597-1a4bcb3a1d7f?auto=format&fit=crop&w=600&q=80",
-      foodName: "Beef Bhuna",
-      restaurant: "Hazir Biriyani",
-      location: "Old Dhaka",
-      reviewer: "Sumaiya Noor",
-      rating: 4.9,
-    },
-    {
-      _id: 3,
-      image: "https://images.unsplash.com/photo-1604909052868-f0e983f46f4f?auto=format&fit=crop&w=600&q=80",
-      foodName: "Faluda",
-      restaurant: "Sultan's Dine",
-      location: "Banani, Dhaka",
-      reviewer: "Nayeem Khan",
-      rating: 4.7,
-    },
-  ];
+  });
+
+  if (isLoading) return <Loading />;
+  if (isError) return <p className="text-center text-red-500 mt-8">Failed to load featured reviews.</p>;
 
   return (
     <div className="my-10 px-4 md:px-8">
@@ -80,9 +69,7 @@ const FeaturedReviews = () => {
       </div>
 
       <div className="text-center mt-8">
-        <button className="btn btn-accent rounded-full px-8">
-          Show All
-        </button>
+        <button className="btn btn-accent rounded-full px-8">Show All</button>
       </div>
     </div>
   );
