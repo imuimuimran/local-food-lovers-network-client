@@ -7,45 +7,61 @@ import AddReview from '../pages/AddReview';
 import AllReviews from '../pages/AllReviews';
 import MyReviews from '../pages/MyReviews';
 import MyFavorites from '../pages/MyFavorites';
-import ProtectedRoute from '../provider/ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute';
+// import ProtectedRoute from '../provider/ProtectedRoute';
+import ErrorPage from '../pages/ErrorPage';
+
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <HomeLayouts />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
                 element: <Home />
             },
             {
-                path: 'login',
+                path: '/login',
                 element: <Login />
             },
-            { 
-                path: 'register', 
-                element: <Register /> 
+            {
+                path: '/register',
+                element: <Register />
             },
-            { 
-                path: 'add-review', 
-                element: <ProtectedRoute><AddReview /></ProtectedRoute> 
+            {
+                path: '/add-review',
+                element: (
+                    <ProtectedRoute>
+                        <AddReview />
+                    </ProtectedRoute>
+                ),
             },
-            { 
-                path: 'all-reviews', 
-                element: <AllReviews /> 
+            {
+                path: '/all-reviews',
+                element: <AllReviews />
             },
-            { 
-                path: 'my-reviews', 
-                element: <ProtectedRoute><MyReviews /></ProtectedRoute> 
+            {
+                path: '/my-reviews',
+                element: (
+                    <ProtectedRoute>
+                        <MyReviews />
+                    </ProtectedRoute>
+                ),
             },
-            { 
-                path: 'my-favorites', 
-                element: <ProtectedRoute><MyFavorites /></ProtectedRoute> 
+            {
+                path: '/my-favorites',
+                element: (
+                    <ProtectedRoute>
+                        <MyFavorites />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: "/*",
-                element: <h2>Error 404</h2>
+                element: <ErrorPage></ErrorPage>
             },
         ]
     }
