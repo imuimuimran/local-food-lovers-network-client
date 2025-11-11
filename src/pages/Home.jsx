@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import Banner from "../components/Banner";
 
 const Home = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return (
+    <div className="min-h-screen">
+      <Banner />
+    </div>
+  );
 };
 
 export default Home;
