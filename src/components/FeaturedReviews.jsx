@@ -4,8 +4,11 @@ import axios from "axios";
 import { FaHeart, FaStar } from "react-icons/fa";
 import Loading from "./Loading";
 import { useNavigate } from "react-router";
+import { useAuth } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const FeaturedReviews = () => {
+  const { user } = useAuth();
   // Fetch top-rated 6 Reviews 
   const navigate = useNavigate();
   const {
@@ -22,6 +25,30 @@ const FeaturedReviews = () => {
 
   if (isLoading) return <Loading />;
   if (isError) return <p className="text-center text-red-500 mt-8">Failed to load featured reviews.</p>;
+
+
+  const handleAddFavorite = async (food) => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
+    const favoriteData = {
+      foodName: food.foodName,
+      restaurant: food.restaurant,
+      image: food.image,
+      userEmail: user.email,
+      date: new Date(),
+    };
+
+    try {
+      await axios.post("http://localhost:3000/favorites", favoriteData);
+      toast.success("Added to favorites!");
+    } catch (error) {
+      toast.error("Failed to add favorite.");
+    }
+  };
+
 
   return (
     <div className="my-10 px-4 md:px-8">
@@ -53,7 +80,9 @@ const FeaturedReviews = () => {
                 <span className="flex items-center gap-1 text-yellow-500">
                   <FaStar /> {item.rating}
                 </span>
-                <button className="btn btn-sm btn-ghost text-red-500 hover:text-red-600">
+                <button
+                  onClick={() => handleAddFavorite(item.foodName)}
+                  className="btn btn-sm btn-ghost text-red-500 hover:text-red-600">
                   <FaHeart />
                 </button>
               </div>
