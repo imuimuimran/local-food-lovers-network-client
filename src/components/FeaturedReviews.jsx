@@ -81,7 +81,7 @@ const FeaturedReviews = () => {
                   <FaStar /> {item.rating}
                 </span>
                 <button
-                  onClick={() => handleAddFavorite(item.foodName)}
+                  onClick={() => handleAddFavorite(item)}
                   className="btn btn-sm btn-ghost text-red-500 hover:text-red-600">
                   <FaHeart />
                 </button>

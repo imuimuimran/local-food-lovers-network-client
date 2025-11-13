@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaYoutube, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -29,10 +30,13 @@ const Footer = () => {
             <div>
               <h4 className="font-semibold mb-2">Follow</h4>
               <div className="flex gap-3">
-                <a aria-label="Facebook" className="p-2 rounded-full hover:bg-neutral-200"><FaFacebookF /></a>
-                <a aria-label="X" className="p-2 rounded-full hover:bg-neutral-200"><FaTwitter /></a>
-                <a aria-label="YouTube" className="p-2 rounded-full hover:bg-neutral-200"><FaYoutube /></a>
-                <a aria-label="Instagram" className="p-2 rounded-full hover:bg-neutral-200"><FaInstagram /></a>
+                <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook" className="p-2 rounded-full hover:bg-neutral-200"><FaFacebookF /></a>
+
+                <a href="https://x.com/" target="_blank" aria-label="X" className="p-2 rounded-full hover:bg-neutral-200"><FaXTwitter /></a>
+
+                <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube" className="p-2 rounded-full hover:bg-neutral-200"><FaYoutube /></a>
+
+                <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram" className="p-2 rounded-full hover:bg-neutral-200"><FaInstagram /></a>
               </div>
             </div>
           </div>
