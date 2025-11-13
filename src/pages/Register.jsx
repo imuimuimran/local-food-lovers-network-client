@@ -36,7 +36,7 @@ const Register = () => {
     try {
       const result = await registerUser(email, password);
       await updateUserProfile(name, photo);
-      toast.success('Registration successful!');
+      // toast.success('Registration successful!');
       reset();
       navigate('/');
     } catch (err) {
