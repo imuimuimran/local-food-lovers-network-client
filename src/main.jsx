@@ -15,6 +15,7 @@ createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <RouterWrapper />
         <App />
+        {/* <RouterProvider router={router} /> */}
         <Toaster position="top-center" reverseOrder={false} />
       </AuthProvider>
     </QueryClientProvider>
