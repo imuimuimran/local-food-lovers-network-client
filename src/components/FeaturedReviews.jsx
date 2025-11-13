@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { FaHeart, FaStar } from "react-icons/fa";
 import Loading from "./Loading";
+import { useNavigate } from "react-router";
 
 const FeaturedReviews = () => {
   // Fetch top-rated 6 Reviews 
+  const navigate = useNavigate();
   const {
     data: featuredReviews = [],
     isLoading,
@@ -59,7 +61,10 @@ const FeaturedReviews = () => {
                 Reviewer: <span className="font-medium">{item.reviewer}</span>
               </p>
               <div className="card-actions justify-end mt-4">
-                <button className="btn btn-outline btn-primary btn-sm">
+                <button
+                  onClick={() => navigate(`/review/${item._id}`)}
+                  className="btn btn-primary btn-sm"
+                >
                   View Details
                 </button>
               </div>

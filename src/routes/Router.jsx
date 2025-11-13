@@ -8,6 +8,7 @@ import AllReviews from '../pages/AllReviews';
 import MyReviews from '../pages/MyReviews';
 import MyFavorites from '../pages/MyFavorites';
 import ProtectedRoute from './ProtectedRoute';
+import ReviewDetails from '../pages/ReviewDetails';
 // import ProtectedRoute from '../provider/ProtectedRoute';
 import ErrorPage from '../pages/ErrorPage';
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
                         <MyFavorites />
                     </ProtectedRoute>
                 ),
+            },
+            {
+                path: "/review/:id",
+                element: <ReviewDetails />,
             },
             {
                 path: "/*",
